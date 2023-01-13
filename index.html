@@ -5,9 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <title>Calculator</title>
 </head>
 <body>
-    <h1>Calculator:</h1>
+    
+    <i class="bi bi-brightness-high-fill" id="toggleDark"></i>
+    
+    <div class="calculator-grid">
+        <div class="output">
+            <div data-previous-operand class="previous-operand"></div>
+            <div data-current-operand class="current-operand"></div>
+        </div>
+        
+        <button data-all-clear class="span-two">Clear</button>
+        <button data-delete>Delete</button>
+        <button data-operation>÷</button>
+        <button data-number>1</button>
+        <button data-number>2</button>
+        <button data-number>3</button>
+        <button data-operation>*</button>
+        <button data-number>4</button>
+        <button data-number>5</button>
+        <button data-number>6</button>
+        <button data-operation>+</button>
+        <button data-number>7</button>
+        <button data-number>8</button>
+        <button data-number>9</button>
+        <button data-operation>-</button>
+        <button data-number>.</button>
+        <button data-number>0</button>
+        <button data-equals class="span-two">=</button>
+    </div>
+
 </body>
+
 </html>
+
+
+<!--
+Buttons:
+
+UI:
+plus
+minus
+multiply
+divide
+equals
+delete
+clear
+point
+
+Design:
+No outline, centered
+light/dark theme
+numbers left, maths middle, screen right, adjust with media queries for mobile/tablet
+whole background is one color, as there is no outline
+
+-->
