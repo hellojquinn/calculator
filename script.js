@@ -1,19 +1,3 @@
-const toggle = document.getElementById('toggleDark');
-const body = document.querySelector('body');
-
-toggle.addEventListener('click', function() {
-    this.classList.toggle('bi-moon'); 
-    if (this.classList.toggle('bi-brightness-high-fill')){
-        body.style.background = 'white';
-        body.style.background = 'black';
-        body.style.transition = '1s';
-    } else {
-        body.style.background = 'black';
-        body.style.background = 'white';
-        body.style.transition = '1s';
-    }
-})
-
 class Calculator {
     constructor(previousOperandTextElement, currentOperandTextElement) {
         this.previousOperandTextElement = previousOperandTextElement
@@ -57,7 +41,7 @@ class Calculator {
             case '-': 
                 computation = prev - current
                 break
-            case '*': 
+            case '×': 
                 computation = prev * current
                 break
             case '÷': 
@@ -142,3 +126,10 @@ deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
+
+
+document.querySelector('.theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const outputs = document.querySelectorAll('.output');
+    outputs.forEach(output => output.classList.toggle('dark'));
+});

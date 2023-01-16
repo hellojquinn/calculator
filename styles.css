@@ -1,23 +1,24 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter';
     font-weight: normal;
 }
 
+
+/* light */
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, #00AAFF, #00FF6C)
+    background: rgb(3,140,101);
+    background: linear-gradient(167deg, rgba(3,140,101,1) 26%, rgba(2,115,94,1) 66%, rgba(2,89,89,1) 91%);
+    color: #8FC1B5;
 }
 
-i {
-    font-size: 30px;
-    cursor: pointer;
-    color: yellow;
-    position: absolute;
-    top: 16%;
-    left: 62%;
-}
+/* dark */
+body.dark {
+    background: rgb(1,21,38);
+    background: linear-gradient(167deg, rgba(1,21,38,1) 31%, rgba(1,46,64,1) 64%, rgba(2,89,89,1) 88%);
+}   
 
 .calculator-grid {
     display: grid;
@@ -30,23 +31,32 @@ i {
 
 .calculator-grid > button {
     cursor: pointer;
-    font-size: 16px;
-    border: 1px solid white;
+    border: 1px solid rgba(3, 140, 101, 0.30);
     outline: none;
     background: rgba(255, 255, 255, 0.75);
+    font-size: 28px;
+    font-family: 'Inter';
+    color: #011526;
 }
 
 .calculator-grid > button:hover {
     background: rgba(255, 255, 255, 0.90);
+    color: #02735E;
+}
+
+.calculator-grid > button:active {
+    box-shadow: 0 1px #038C65;
+    transform: translateY(0.5px);
 }
 
 .span-two {
     grid-column: span 2;
 }
 
+/* light */
 .output {
     grid-column: 1 / -1;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: #011526;
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
@@ -54,14 +64,29 @@ i {
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
+    opacity: 80%;
+}
+
+/* dark */
+.output.dark {
+    grid-column: 1 / -1;
+    background-color: rgba(3, 140, 101, 0.30);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    opacity: 80%;
 }
 
 .output .previous-operand {
-    color: rgba(255, 255, 255, 0.75);
     font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .output .current-operand {
-    color: white;
     font-size: 2.5rem;
+    color: white;
 }
