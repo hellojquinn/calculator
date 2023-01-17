@@ -59,7 +59,7 @@ class Calculator {
     getDisplayNumber(number) {
         const stringNumber = number.toString()
         const integerDigits = parseFloat(stringNumber.split('.')[0])
-        const decimalDigits = stringNumber.split('.')[1]
+        let decimalDigits = stringNumber.split('.')[1]
         let integerDisplay
         if (isNaN(integerDigits)) {
             integerDisplay = ''
@@ -68,11 +68,15 @@ class Calculator {
                 maximumFractionDigits: 0 })
         }
         if (decimalDigits != null) {
+            if (decimalDigits.length > 4) {
+                decimalDigits = decimalDigits.substring(0, 4);
+            }
             return `${integerDisplay}.${decimalDigits}`
         } else {
             return integerDisplay
         }
     }
+
 
     updateDisplay() {
         this.currentOperandTextElement.innerText = 
@@ -98,12 +102,23 @@ const currentOperandText = document.querySelector('[data-current-operand]');
 
 const calculator = new Calculator(previousOperandText, currentOperandText)
 
+
+//click and button events
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
     })
 })
+
+document.addEventListener("keydown", event => {
+    numberButtons.forEach(button => {
+        if(event.key === button.innerText) {
+            calculator.appendNumber(button.innerText);
+            calculator.updateDisplay();
+        }
+    });
+});
 
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -112,22 +127,65 @@ operationButtons.forEach(button => {
     })
 })
 
+document.addEventListener("keydown", event => {
+    switch(event.key) {
+        case "+":
+            calculator.chooseOperation("+");
+            calculator.updateDisplay();
+            break;
+        case "-":
+            calculator.chooseOperation("-");
+            calculator.updateDisplay();
+            break;
+        case "*":
+            calculator.chooseOperation("×");
+            calculator.updateDisplay();
+            break;
+        case "/":
+            calculator.chooseOperation("÷");
+            calculator.updateDisplay();
+            break;
+    }
+});
+
 equalsButton.addEventListener('click', button => {
     calculator.compute()
     calculator.updateDisplay()
 })
+
+document.addEventListener("keydown", event => {
+    if(event.key === "Enter" || event.key === "=") {
+        calculator.compute();
+        calculator.updateDisplay();
+    }
+});
 
 allClearButton.addEventListener('click', button => {
     calculator.clear()
     calculator.updateDisplay()
 })
 
+document.addEventListener("keydown", event => {
+    if(event.code === "Escape") {
+        calculator.clear();
+        calculator.updateDisplay();
+    }
+});
+
 deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
 
+document.addEventListener("keydown", event => {
+    if (event.key === 'Backspace' || event.key === 'Delete') {
+        calculator.delete();
+        calculator.updateDisplay();
+    }
+});
 
+
+//toggle theme
 document.querySelector('.theme-toggle').addEventListener('click', () => {
     document.body.classList.toggle('dark');
     const outputs = document.querySelectorAll('.output');

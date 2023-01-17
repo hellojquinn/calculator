@@ -65,6 +65,7 @@ body.dark {
     word-wrap: break-word;
     word-break: break-all;
     opacity: 80%;
+    transition: 1s;
 }
 
 /* dark */
